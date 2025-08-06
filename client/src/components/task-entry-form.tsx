@@ -146,6 +146,7 @@ export function TaskEntryForm() {
                       rows={2}
                       data-testid="textarea-description"
                       {...field}
+                      value={field.value || ""}
                     />
                   </FormControl>
                   <FormMessage />

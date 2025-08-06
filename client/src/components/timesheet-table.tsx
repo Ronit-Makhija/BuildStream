@@ -379,7 +379,7 @@ function EditTaskForm({
       
       <div>
         <Label htmlFor="edit-status">Status</Label>
-        <Select value={formData.status} onValueChange={(value) => setFormData({ ...formData, status: value })}>
+        <Select value={formData.status} onValueChange={(value: "completed" | "in-progress" | "on-hold") => setFormData({ ...formData, status: value })}>
           <SelectTrigger data-testid="select-edit-status">
             <SelectValue />
           </SelectTrigger>
