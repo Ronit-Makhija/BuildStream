@@ -8,6 +8,10 @@ This guide will help you switch from Replit's managed database to your own local
 1. Download from https://www.postgresql.org/download/windows/
 2. Run installer with default settings (port 5432)
 3. Remember the superuser password you set
+4. Add PostgreSQL to PATH:
+   - Open System Properties → Advanced → Environment Variables
+   - Add `C:\Program Files\PostgreSQL\15\bin` to your PATH
+   - Or restart Command Prompt and use full path to psql
 
 ### macOS
 ```bash
@@ -26,11 +30,23 @@ sudo systemctl enable postgresql
 ## Part 2: Create Database and User
 
 Access PostgreSQL:
-```bash
-# Windows
-"C:\Program Files\PostgreSQL\15\bin\psql.exe" -U postgres
 
-# macOS/Linux
+**Option A: Using full path (if PATH not set)**
+```cmd
+"C:\Program Files\PostgreSQL\15\bin\psql.exe" -U postgres
+```
+
+**Option B: Using SQL Shell (recommended for Windows)**
+- Start Menu → PostgreSQL 15 → SQL Shell (psql)
+- Press Enter for default values (server, database, port, username)
+- Enter your postgres password
+
+**Option C: Using pgAdmin (GUI)**
+- Start Menu → PostgreSQL 15 → pgAdmin 4
+- Connect to local server with your postgres password
+
+**macOS/Linux:**
+```bash
 sudo -u postgres psql
 ```
 
@@ -123,7 +139,16 @@ After running the setup script, you can login with:
    ```
 
 2. Test connection manually:
+   ```cmd
+   # Windows (use full path if psql not in PATH)
+   "C:\Program Files\PostgreSQL\15\bin\psql.exe" -h localhost -p 5432 -U timesheet_user -d timesheet_app
+   
+   # Or use SQL Shell: Start Menu → PostgreSQL 15 → SQL Shell (psql)
+   # Then enter: timesheet_app, timesheet_user, localhost, 5432, [password]
+   ```
+   
    ```bash
+   # macOS/Linux
    psql -h localhost -p 5432 -U timesheet_user -d timesheet_app
    ```
 
